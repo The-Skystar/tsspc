@@ -6,6 +6,8 @@ import notProcessed from '../components/pages/NotProcessed'
 import login from '../components/pages/Login'
 import notReceive from '../components/pages/NotReceive'
 import notPay from '../components/pages/NotPay'
+import transport from '../components/pages/Transport'
+import pay from '../components/pages/Pay'
 
 Vue.use(Router)
 
@@ -38,6 +40,18 @@ export default new Router({
           name: 'notPay',
           component: notPay,
           meta: {title: '待付款'}
+        },
+        {
+          path: '/transport',
+          name: 'transport',
+          component: transport,
+          meta: {title: '订单管理'}
+        },
+        {
+          path: '/pay',
+          name: 'pay',
+          component: pay,
+          meta: {title: '财务统计'}
         }
       ]
     },

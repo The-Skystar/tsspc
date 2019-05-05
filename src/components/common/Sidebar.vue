@@ -15,28 +15,13 @@
           </el-tooltip>
           <el-menu-item index="1-2" route="/notPay">待付款</el-menu-item>
       </el-submenu>
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>订单管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="2-1">运输中</el-menu-item>
-          <el-menu-item index="2-2">疑难件</el-menu-item>
-          <el-menu-item index="2-2">已完成</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-menu-item index="3">
+      <el-menu-item index="2" route="/transport">
+        <i class="el-icon-menu"></i>
+        <span slot="title">订单管理</span>
+      </el-menu-item>
+      <el-menu-item index="3" route="/pay">
         <i class="el-icon-circle-plus"></i>
         <span slot="title">财务统计</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-document"></i>
-        <span slot="title">物流地图</span>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <i class="el-icon-setting"></i>
-        <span slot="title">数据可视化</span>
       </el-menu-item>
     </el-menu>
   </div>

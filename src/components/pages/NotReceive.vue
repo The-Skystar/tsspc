@@ -132,6 +132,9 @@
           bus.$emit("number1",self.total)
           self.getFormData(self.orderData, 1);
           self.listLoading = false
+        }).catch(function () {
+          self.$message.error("系统错误")
+          self.listLoading = false
         })
       },
       getFormData (data) {
@@ -208,6 +211,9 @@
             self.total = res.data.data.length;
             self.getFormData(self.orderData, 1);
             self.listLoading = false
+          }).catch(function () {
+            self.$message.error("系统错误")
+            self.listLoading = false
           })
         }
         if (this.select_word!=null&&this.select_word!=""&&(this.value1 == null || this.value1 === "")){
@@ -217,6 +223,9 @@
             self.total = res.data.data.length;
             self.getFormData(self.orderData, 1);
             self.listLoading = false
+          }).catch(function () {
+            self.$message.error("系统错误")
+            self.listLoading = false
           })
         }
         if (this.value1 != null && this.value1 != "" &&this.select_word!=null&&this.select_word!="") {
@@ -225,6 +234,9 @@
             self.orderData = res.data.data;
             self.total = res.data.data.length;
             self.getFormData(self.orderData, 1);
+            self.listLoading = false
+          }).catch(function () {
+            self.$message.error("系统错误")
             self.listLoading = false
           })
         }
@@ -301,6 +313,9 @@
           } else {
             self.$message.error(res.data.msg)
           }
+        }).catch(function () {
+          self.$message.error("系统错误")
+          self.listLoading = false
         })
         this.editVisible = false;
       },
