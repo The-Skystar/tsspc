@@ -7,7 +7,7 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" icon="delete" class="handle-del mr10">批量处理</el-button>
+        <el-button type="primary" icon="delete" class="handle-del mr10" @click="batchNotice">批量处理</el-button>
         <el-date-picker
           v-model="value1"
           type="date"
@@ -37,7 +37,7 @@
         </el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text" @click="handleEdit(scope.$index, scope.row)">通知付款</el-button>
+            <el-button type="text" @click="notice(scope.$index, scope.row)">通知付款</el-button>
             <!--<el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
           </template>
         </el-table-column>
@@ -127,7 +127,6 @@
           form.push(orderForm);
         }
         this.form = form;
-        console.log(this.form)
       },
       getFormatDate (date) {
         let seperator1 = "-";
@@ -213,6 +212,44 @@
         let currentdate = year + seperator1 + month + seperator1 + strDate;
         return currentdate;
       },
+      notice(index,row){
+        const item = this.form[index]
+        let user = JSON.parse(sessionStorage.getItem("user"))
+        let config = {
+          headers: {
+            'token': sessionStorage.getItem("token"),
+            'userId': user.userId
+          }
+        }
+        let self = this
+        this.$axios.get("/tss/notice?orderId="+item.orderId,config).then(function (res) {
+          if (res.data.code===999){
+            self.$message.success("通知成功");
+          } else {
+            self.$message.error("通知失败");
+          }
+        })
+      },
+      batchNotice(){
+        const length = this.multipleSelection.length
+        for (let i = 0;i<length;i++){
+          let user = JSON.parse(sessionStorage.getItem("user"))
+          let config = {
+            headers: {
+              'token': sessionStorage.getItem("token"),
+              'userId': user.userId
+            }
+          }
+          let self = this
+          this.$axios.get("/tss/notice?orderId="+this.multipleSelection[i].orderId,config).then(function (res) {
+            if (res.data.code===999){
+              self.$message.success("通知成功");
+            } else {
+              self.$message.error("通知失败");
+            }
+          })
+        }
+      }
     }
   }
 </script>
